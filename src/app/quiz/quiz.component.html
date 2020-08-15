@@ -1,0 +1,69 @@
+<div class="container h-100 d-flex flex-column">
+
+    <div class="row">
+
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0 vh-align">
+            <table class="m-3">
+                <tr>
+                    <td *ngFor="let marker of selectedCampaign.questions">
+                        <div
+                            class="marker marker-filled {{selectedCampaign.questions[currentQuestionIndex].appeared == true ? 'marker-filled' : ''}}">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0">
+
+            <div class="text-center m-2">
+                <h5>{{selectedCampaign.questions[currentQuestionIndex].question}}</h5>
+            </div>
+        </div>
+
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0 primary-color">
+            <img src="../../assets/images/quiz-circle.png" alt="">
+        </div>
+    </div>
+
+    <div class="row flex-grow-1">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0 container-row">
+            <div class="row">
+
+                <div *ngFor="let answer of selectedCampaign.questions[currentQuestionIndex].answers" class="row option-button align-items-center">
+                    <div class="col-auto color" style="padding: 15px;">
+                        A
+                    </div>
+                    <div class="col bg-white inner-option-button">
+                        <div class="row align-items-center">
+                            <div class="col" style="text-align: left; margin: auto;">
+                                {{answer.answer}}
+                            </div>
+                            <div class="col-auto checkmark">
+                                <img src="../../assets/images/tick.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row vh-align">
+                    <button class="arrow-left" *ngIf="currentQuestionIndex !=0"
+                        (click)="currentQuestionIndex = currentQuestionIndex - 1">back</button>
+                    <button class="arrow-right" *ngIf="currentQuestionIndex != selectedCampaign.questions.length - 1"
+                        (click)="currentQuestionIndex = currentQuestionIndex + 1">Next</button>
+                
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="row margin-0 padding-0">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 margin-0 padding-0" style="background-color: #cbecf8;">
+            <img class="bottom-bar" src="../../assets/images/bottom-bar.png" alt="">
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,57 @@
+<div class="container h-100 d-flex flex-column">
+
+  <div class="row flex-grow-1">
+
+    <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0 primary-color">
+      <img src="../../assets/images/fogsi-cipla.png" alt="">
+      <img src="../../assets/images/nutri-connect.png" alt="">
+    </div>
+    <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 text-center pb-5 container-row">
+      <form [formGroup]="loginForm">
+        <div class="loginfrm shadow">
+          <div class="form-group">
+            <h5>LOGIN</h5>
+          </div>
+          <div class="form-group">
+
+            <input type="text" formControlName="doctorName" class="form-control inputCss" placeholder="Doctor Name*"
+              id="pwd">
+              <p *ngIf="showDoctorNameError" class="alert-text">Doctor name required</p>
+          </div>
+          <div class="form-group">
+            <input type="text" formControlName="emailId" class="form-control inputCss" placeholder="Email ID*" id="pwd">
+            <p *ngIf="showEmailError" class="alert-text">Email required</p>
+          </div>
+          <div class="form-group">
+            <input type="text" formControlName="mobile" class="form-control inputCss" placeholder="Mobile No" id="pwd">
+          </div>
+          <div class="form-group">
+            <select class="form-control inputCss" formControlName="state">
+              <option value="0" disabled>State*</option>
+              <option>Maharashtra</option>
+            </select>
+            <p *ngIf="showStateError" class="alert-text">State required</p>
+          </div>
+          <span style="float: left;">* Required field</span>
+          <br>
+          <br>
+          <div class="form-group" style="float: left;">
+            <label><input type="checkbox" value="" (change)="onCheckboxChange($event)"> I give my consent to participation in the poll & use of poll result outcome</label>
+            <p *ngIf="showConsentError" class="alert-text">Consent required</p>
+          </div>
+          <div class="form-group">
+            <button class="nextBtn" (click)="navigateToSection()">LOGIN</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="margin-0 padding-0">
+    <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 margin-0 padding-0" style="background-color: #cbecf8;">
+      <img class="bottom-bar" src="../../assets/images/bottom-bar.png" alt="">
+    </div>
+  </div>
+
+</div>

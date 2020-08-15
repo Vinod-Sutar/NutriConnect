@@ -1,0 +1,47 @@
+<div class="container h-100 d-flex flex-column">
+
+    <div class="row flex-fill">
+
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0 primary-color">
+            <img src="../../assets/images/fogsi-cipla.png" alt="">
+            <img src="../../assets/images/nutri-connect.png" alt="">
+        </div>
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 py-2 primary-color text-center">
+            <h5>SECTIONS</h5>
+        </div>
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 container-row text-center pb-4">
+
+            <div class="row justify-content-between align-items-center">
+                <div *ngFor="let campaign of campaigns" class="col-6 text-center my-2"
+                    (click)="navigateToQuiz(campaign)">
+
+                    <div class="shadow section-item">
+
+                        <!-- <div class="section-item-badge"
+                        *ngIf="campaign.appeared_questions_count === campaign.total_questions_count">
+                        <img src="../../assets/images/tick.png">
+                    </div> -->
+                        <div class="section-item-badge vh-align"
+                            *ngIf="campaign.appeared_questions_count == campaign.total_questions_count"
+                            [ngStyle]="{'border': '2px solid' + campaign.color}">
+                            <span
+                                [ngStyle]="{'color': campaign.color}">{{campaign.questions.length}}/{{campaign.questions.length}}</span>
+                        </div>
+
+                        <div [style.background-color]="campaign.color">
+                            <br>
+                            <h5 class="title">{{campaign.campaign_name}}</h5>
+                            <p>{{campaign.detail}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="margin-0 padding-0">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 margin-0 padding-0" style="background-color: #cbecf8;">
+            <img class="bottom-bar " src="../../assets/images/bottom-bar.png" alt="">
+        </div>
+    </div>
+</div>

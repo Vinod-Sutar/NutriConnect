@@ -1,0 +1,37 @@
+
+.marker{
+    border: 1px solid #1F4e94;
+    border-radius: 10px;
+    padding: 4px;
+    margin: 2px;
+ }
+ .marker-filled {
+
+    background-color: #1F4e94;
+ }
+
+ table {
+     width: 100%;
+ }
+
+ .arrow-left {
+     
+    border: none;
+    color: white;
+    background-color: #1F4e94;
+    border-radius: 5px 10px 5px 5px;
+    background-image: url('/assets/images/arrow-left.png');
+}
+
+.arrow-right {
+     
+    border: none;
+    color: white;
+    background-color: #1F4e94;
+    border-radius: 10px 20px 10px 10px;
+    padding: 15px;
+    background-image: url('/assets/images/arrow-right.png');
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-position: 20px;
+}
