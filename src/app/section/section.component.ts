@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { QuizService } from '../quiz.service';
 
-declare  var $:any;
+declare var $: any;
 
 @Component({
   selector: 'app-section',
@@ -11,36 +11,84 @@ declare  var $:any;
 })
 export class SectionComponent implements OnInit {
 
-  campaigns:any = [];
-  questionList:any = [];
+  campaigns: any = [];
+  questionList: any = [];
 
-  constructor(private activatedrouts: ActivatedRoute,private router: Router,
-    private quizService : QuizService) { }
+  constructor(private activatedrouts: ActivatedRoute, private router: Router,
+    private quizService: QuizService) { }
 
   ngOnInit(): void {
-    this.loadCampaigns();
-  }
-  loadCampaigns(){
-    let payload = {
-      'operation' :"campaigns",
+
+    if (localStorage.getItem('email')) {
+
+      this.loadCampaigns();
     }
-    this.quizService.getLogin(payload).subscribe((response: any) => {
-      if(response.status == 200){
-        this.campaigns = response.campaigns;
-        
-        console.log("response", response);
-        console.log("this.questionList", this.questionList);
-        
-        $('.square-div').height($('.square-div').width());
+    else {
 
-      }});
+      this.router.navigate(['/login']);
+    }
+  }
+  loadCampaigns() {
+
+    let payload = {
+      'operation': "campaigns",
+      'email' : localStorage.getItem('email')
+    }
+
+    this.quizService.getLogin(payload).subscribe((response: any) => {
+
+      if (response.status == 200) {
+
+        this.campaigns = response.campaigns;
+
+        $('.square-div').height($('.square-div').width());
+      }
+    });
 
   }
 
-  navigateToQuiz(campaign){
-    this.router.navigate(['/quiz']);
-    localStorage.setItem('selectedCampaign', JSON.stringify(campaign))
-    console.log(campaign);
-    
+  getUnappearedQuestionCount(campaign) {
+
+    var count = 0;
+
+    campaign.questions.forEach(question => {
+
+      if (question.selected_answer_id == 0) {
+        
+        count++;
+      }
+    });
+
+    return campaign.questions.length - count;
+  }
+
+  navigateToQuiz(campaign) {
+
+    if (this.getUnappearedQuestionCount(campaign) == campaign.questions.length) {
+
+      document.getElementById("openTimeupPopupButton").click();
+    }
+    else {
+
+      localStorage.setItem('selectedCampaign', JSON.stringify(campaign))
+  
+      console.log(campaign);
+
+      this.router.navigate(['/quiz']);
+    }
+
+
+  }
+
+  logoutClicked() {
+
+    document.getElementById("openLogoutPopupButton").click();
+  }
+
+  logout() {
+
+    localStorage.removeItem("email");
+
+    this.router.navigate(['/']);
   }
 }

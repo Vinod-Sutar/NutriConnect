@@ -1,7 +1,14 @@
 .title {
     color: white;
+    font-size: 16px;
 }
 
 p {
     font-size: 13px;
 }
+
+
+.logout {
+    margin-top: 25px !important;
+     width: 40px;
+ }

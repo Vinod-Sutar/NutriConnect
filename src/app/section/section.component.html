@@ -2,10 +2,23 @@
 
     <div class="row flex-fill">
 
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0 mb-4">
+            <div class="row">
+                <div class="col-2">
+                </div>
+                <div class="col-8 padding-0">
+                    <img src="../../assets/images/fogsi-cipla-small.png" alt="">
+                </div>
+                <div class="col-2"  (click)="logoutClicked()">
+                    <img class="logout mt-4" src="../../assets/images/logout.png">
+                </div>
+            </div>
+        </div>
+
         <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0 primary-color">
-            <img src="../../assets/images/fogsi-cipla.png" alt="">
             <img src="../../assets/images/nutri-connect.png" alt="">
         </div>
+
         <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 py-2 primary-color text-center">
             <h5>SECTIONS</h5>
         </div>
@@ -17,18 +30,18 @@
 
                     <div class="shadow section-item">
 
-                        <!-- <div class="section-item-badge"
-                        *ngIf="campaign.appeared_questions_count === campaign.total_questions_count">
-                        <img src="../../assets/images/tick.png">
-                    </div> -->
-                        <div class="section-item-badge vh-align"
-                            *ngIf="campaign.appeared_questions_count == campaign.total_questions_count"
-                            [ngStyle]="{'border': '2px solid' + campaign.color}">
-                            <span
-                                [ngStyle]="{'color': campaign.color}">{{campaign.questions.length}}/{{campaign.questions.length}}</span>
+                        <div class="section-item-badge checkmark checkmark-correct"
+                            [ngStyle]="{'border': '2px solid' + campaign.color, 'background-color': campaign.color}"
+                            *ngIf="getUnappearedQuestionCount(campaign) == campaign.questions.length">
                         </div>
 
-                        <div [style.background-color]="campaign.color">
+                        <div *ngIf="getUnappearedQuestionCount(campaign) != campaign.questions.length"
+                            class="section-item-badge vh-align" [ngStyle]="{'border': '2px solid' + campaign.color}">
+                            <span
+                                [ngStyle]="{'color': campaign.color}">{{getUnappearedQuestionCount(campaign)}}/{{campaign.questions.length}}</span>
+                        </div>
+
+                        <div  [style.background-color]="campaign.color">
                             <br>
                             <h5 class="title">{{campaign.campaign_name}}</h5>
                             <p>{{campaign.detail}}</p>
@@ -42,6 +55,53 @@
     <div class="margin-0 padding-0">
         <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 margin-0 padding-0" style="background-color: #cbecf8;">
             <img class="bottom-bar " src="../../assets/images/bottom-bar.png" alt="">
+        </div>
+    </div>
+</div>
+
+
+<button id="openTimeupPopupButton" [hidden]="true" data-toggle="modal" data-target="#timeupPopup">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="timeupPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="outer">
+                    <div class="inner popup-body">You have already shared your response for this section.</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="outer">
+                    <button id="home-button" class="btn btn-primary shadow" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<button id="openLogoutPopupButton" [hidden]="true" data-toggle="modal" data-target="#logoutPopup">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="logoutPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="outer">
+                    <div class="inner popup-body">Are you sure you want to logout?</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="outer">
+                    <button class="btn btn-primary shadow mx-3" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary shadow" data-dismiss="modal" (click)="logout()">Logout</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

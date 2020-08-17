@@ -5,7 +5,20 @@
     padding: 4px;
     margin: 2px;
  }
+
  .marker-filled {
+
+    background-color: #1F4e94;
+ }
+
+ .marker-white{
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 1px;
+    margin: 0 2px;
+ }
+ 
+ .marker-dash {
 
     background-color: #1F4e94;
  }
@@ -14,24 +27,86 @@
      width: 100%;
  }
 
- .arrow-left {
-     
+ .arrow {
+
+    font-family: Poppins-Bold;
+    font-size: 40px;
+    font-weight: bolder;
+    width: 50px;
+    /* height: 50px; */
     border: none;
     color: white;
     background-color: #1F4e94;
-    border-radius: 5px 10px 5px 5px;
-    background-image: url('/assets/images/arrow-left.png');
+    margin: 15px;
+    background-repeat: no-repeat;
+ }
+
+ .arrow-left {
+     
+    border-radius: 20px 10px 10px 10px;
 }
 
 .arrow-right {
      
-    border: none;
-    color: white;
-    background-color: #1F4e94;
     border-radius: 10px 20px 10px 10px;
-    padding: 15px;
-    background-image: url('/assets/images/arrow-right.png');
-    background-size: 40px 40px;
-    background-repeat: no-repeat;
-    background-position: 20px;
 }
+
+
+.arrow:disabled {
+
+    opacity: 50%;
+}
+
+.option-button {
+    cursor: pointer;
+    background: #1F4e94;
+    width: 100%; 
+    border-radius: 7px 20px 7px 7px;
+    min-height: 70px;
+    padding: 5px;
+    margin: 10px 30px;
+ }
+ 
+ .inner-option-button {
+ 
+    border-radius: 7px 15px 7px 7px;
+ }
+
+ .loading {
+     width: 30px;
+ }
+
+ 
+
+.correct {
+     
+    background: #7CBE3A;
+}
+
+.wrong {
+    
+    background: #ff7b7b;
+}
+
+
+
+.checkmark {
+    margin: 10px;
+    padding: 0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 3px solid #1F4e94;
+    background-size: 35px 35px;
+    background-repeat: no-repeat;
+ }
+ 
+ .checkmark-correct {
+    border-color: #7CBE3A;
+    background-image: url('../../assets/images/correct.png');
+ }
+ 
+ .checkmark-wrong {
+     border-color: #ff7b7b;
+    background-image: url('../../assets/images/wrong.png');
+ }

@@ -16,27 +16,68 @@
 
             <input type="text" formControlName="doctorName" class="form-control inputCss" placeholder="Doctor Name*"
               id="pwd">
-              <p *ngIf="showDoctorNameError" class="alert-text">Doctor name required</p>
+            <p *ngIf="showDoctorNameError" class="alert-text">{{showDoctorNameError}}</p>
           </div>
           <div class="form-group">
-            <input type="text" formControlName="emailId" class="form-control inputCss" placeholder="Email ID*" id="pwd">
-            <p *ngIf="showEmailError" class="alert-text">Email required</p>
+            <input type="email" formControlName="emailId" class="form-control inputCss" placeholder="Email ID*">
+            <p *ngIf="showEmailError" class="alert-text">{{showEmailError}}</p>
           </div>
           <div class="form-group">
-            <input type="text" formControlName="mobile" class="form-control inputCss" placeholder="Mobile No" id="pwd">
+            <input type="text" formControlName="mobile" class="form-control inputCss" placeholder="Mobile No">
+          </div>
+          <div class="form-group">
+            <input type="text" formControlName="registrationNo" class="form-control inputCss"
+              placeholder="Registration number*">
+            <p *ngIf="showRegistrationNoError" class="alert-text">{{showRegistrationNoError}}</p>
           </div>
           <div class="form-group">
             <select class="form-control inputCss" formControlName="state">
               <option value="0" disabled>State*</option>
+              <option>Andaman and Nicobar Island</option>
+              <option>Andhra Pradesh</option>
+              <option>Arunachal Pradesh</option>
+              <option>Assam</option>
+              <option>Bihar</option>
+              <option>Chandigarh</option>
+              <option>Chhattisgarh</option>
+              <option>Dadra and Nagar Haveli and Daman and Diu</option>
+              <option>Delhi</option>
+              <option>Goa</option>
+              <option>Gujarat</option>
+              <option>Haryana</option>
+              <option>Himachal Pradesh</option>
+              <option>Jammu and Kashmir</option>
+              <option>Jharkhand</option>
+              <option>Karnataka</option>
+              <option>Kerala</option>
+              <option>Ladakh</option>
+              <option>Lakshadweep</option>
+              <option>Madhya Pradesh</option>
               <option>Maharashtra</option>
+              <option>Manipur</option>
+              <option>Meghalaya</option>
+              <option>Mizoram</option>
+              <option>Nagaland</option>
+              <option>Odisha</option>
+              <option>Puducherry</option>
+              <option>Punjab</option>
+              <option>Rajasthan</option>
+              <option>Sikkim</option>
+              <option>Tamil Nadu</option>
+              <option>Telangana</option>
+              <option>Tripura</option>
+              <option>Uttar Pradesh</option>
+              <option>Uttarakhand</option>
+              <option>West Bengal</option>
             </select>
-            <p *ngIf="showStateError" class="alert-text">State required</p>
+            <p *ngIf="showStateError" class="alert-text">{{showStateError}}</p>
           </div>
           <span style="float: left;">* Required field</span>
           <br>
           <br>
           <div class="form-group" style="float: left;">
-            <label><input type="checkbox" value="" (change)="onCheckboxChange($event)"> I give my consent to participation in the poll & use of poll result outcome</label>
+            <label><input type="checkbox" value="" (change)="onCheckboxChange($event)"> I give my consent to
+              participation in the poll & use of poll result outcome</label>
             <p *ngIf="showConsentError" class="alert-text">Consent required</p>
           </div>
           <div class="form-group">

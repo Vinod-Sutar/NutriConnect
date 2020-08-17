@@ -1,12 +1,28 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6 text-center">
-            <h1>image</h1>
-            <button class="nextBtn">Go To Sections</button>
+<div class="container h-100 d-flex flex-column">
+
+    <div class="row flex-grow-1">
+
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0 primary-color">
+            <img src="../../assets/images/sponsors.png" alt="">
         </div>
 
-        <div class="col-md-3"></div>
 
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 pb-5 container-row">
+            <div class="p-4">
+                <button class="nextBtn" [routerLink]="['/sections']">Go To Sections</button>
+            </div>
+            <p class="disclaimer">
+                For the use of a Registered Medical Practitioner only.
+                <br>
+                Developed in August 2020. Covid 19 period.
+            </p>
+        </div>
     </div>
+
+    <div class="margin-0 padding-0">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 margin-0 padding-0" style="background-color: #cbecf8;">
+            <img class="bottom-bar" src="../../assets/images/bottom-bar.png" alt="">
+        </div>
+    </div>
+
 </div>

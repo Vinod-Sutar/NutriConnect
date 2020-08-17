@@ -16,13 +16,15 @@ export class LoginComponent implements OnInit {
 
   loginObj: any;
 
-  showDoctorNameError = false;
+  showDoctorNameError: string = null;
 
-  showEmailError = false;
+  showEmailError: string = null;
 
-  showStateError = false;
+  showRegistrationNoError: string = null;
 
-  showConsentError = false;
+  showStateError: string = null;
+
+  showConsentError: string = null;
 
   constructor(private formBuilder: FormBuilder, private activatedrouts: ActivatedRoute,
     private router: Router, private quizService: QuizService
@@ -34,7 +36,8 @@ export class LoginComponent implements OnInit {
       doctorName: [],
       emailId: [],
       state: ['0'],
-      mobile: []
+      mobile: [],
+      registrationNo: []
     })
   }
 
@@ -45,54 +48,73 @@ export class LoginComponent implements OnInit {
 
   navigateToSection() {
 
-    this.showDoctorNameError = false;
+    this.showDoctorNameError = null;
 
-    this.showEmailError = false;
+    this.showEmailError = null;
 
-    this.showStateError = false;
+    this.showRegistrationNoError = null;
 
-    this.showConsentError = false;
+    this.showStateError = null;
+
+    this.showConsentError = null;
 
     if (this.loginForm.controls['doctorName'].value == null || this.loginForm.controls['doctorName'].value.length == 0) {
 
-      this.showDoctorNameError = true;
+      this.showDoctorNameError = "Doctor name required";
     }
+
     if (this.loginForm.controls['emailId'].value == null || this.loginForm.controls['emailId'].value.length == 0) {
 
-      this.showEmailError = true;
+      this.showEmailError = "Email required";
+    }
+    else if (this.validateEmail(this.loginForm.controls['emailId'].value) == false) {
+
+      this.showEmailError = "Invalid email address";
     }
 
     if (this.loginForm.controls['state'].value == 0) {
 
-      this.showStateError = true;
+      this.showStateError = "State required";
+    }
+
+    if (this.loginForm.controls['registrationNo'].value == null || this.loginForm.controls['registrationNo'].value.length == 0) {
+
+      this.showRegistrationNoError = "Registration number required";
     }
 
     if (this.isChecked == false) {
 
-      this.showConsentError = true;
+      this.showConsentError = "Consent required";
     }
 
-    if (this.showDoctorNameError == false && this.showEmailError == false && this.showStateError == false && this.showConsentError == false) {
+    if (this.showDoctorNameError == null && this.showEmailError == null && this.showStateError == null && this.showRegistrationNoError == null && this.showConsentError == null) {
 
       let payload = {
         'operation': "login",
         'doctor_name': this.loginForm.controls['doctorName'].value,
         'email': this.loginForm.controls['emailId'].value,
         'mobile': this.loginForm.controls['mobile'].value,
+        'registrationNo': this.loginForm.controls['registrationNo'].value,
         'state': this.loginForm.controls['state'].value
 
       }
       this.quizService.getLogin(payload).subscribe((response: any) => {
         if (response.status == 200) {
           let loginInfo = response;
-          this.router.navigate(['/section']);
-          localStorage.setItem('emailId', this.loginForm.controls['emailId'].value);
+          this.router.navigate(['/sections']);
+          localStorage.setItem('email', this.loginForm.controls['emailId'].value);
         };
       });
     }
-
-
-
-    // this.router.navigate(['/section']);
   }
+
+
+  validateEmail(email) {
+
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    return re.test(String(email).toLowerCase());
+  }
+
+
 }

@@ -249,31 +249,6 @@ margin-left: 8%;
    }
 }
 
-.checkmark {
-   padding: 10px;
-}
-
-.checkmark > img {
-   height: 40px;
-   width: 40px;
-}
-
-.option-button {
-   cursor: pointer;
-   background: green;
-   width: 100%; 
-   border-radius: 7px 20px 7px 7px;
-   height: 70px;
-   padding: 5px;
-   margin: 10px 30px;
-}
-
-.inner-option-button {
-
-   border-radius: 7px 15px 7px 7px;
-}
-
-
 .shadow {
   
    box-shadow: 5px 5px 3px #00000020 !important;
@@ -290,3 +265,42 @@ margin-left: 8%;
 
    font-family: Poppins-Bold;
  }
+
+
+.checkmark {
+   padding: 0;
+   height: 40px;
+   width: 40px;
+   border-radius: 50%;
+   border: 3px solid #1F4e94;
+   background-size: 36px 36px;
+   background-repeat: no-repeat;
+}
+
+.checkmark-correct {
+   border-color: #7CBE3A;
+   background-image: url('assets/images/correct-transparent.png');
+}
+
+.checkmark-wrong {
+    border-color: #ff7b7b;
+   background-image: url('assets/images/wrong.png');
+}
+
+
+.disclaimer {
+   color: black;
+   font-size: 10px;
+}
+
+.home-button {
+   margin-top: 10px !important;
+   width: 30px;
+}
+
+
+.logout {
+   margin-top: 3px !important;
+    width: 40px;
+    float: right;
+}

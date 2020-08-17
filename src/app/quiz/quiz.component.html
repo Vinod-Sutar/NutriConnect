@@ -1,22 +1,41 @@
 <div class="container h-100 d-flex flex-column">
 
-    <div class="row">
+    <div class="row mt-3">
 
-        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0 vh-align">
-            <table class="m-3">
-                <tr>
-                    <td *ngFor="let marker of selectedCampaign.questions">
-                        <div
-                            class="marker marker-filled {{selectedCampaign.questions[currentQuestionIndex].appeared == true ? 'marker-filled' : ''}}">
-                        </div>
-                    </td>
-                </tr>
-            </table>
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 ">
+            <div class="row">
+                <div class="col-3">
+                    <img class="home-button" src="../../assets/images/home.svg" (click)="homeClicked()">
+                </div>
+                <div class="col-6 padding-0">
+                    <table class="mt-3">
+                        <tr>
+                            <td *ngFor="let marker of selectedCampaign.questions, let i = index">
+                                <div class="marker {{marker.selected_answer_id > 0 ? 'marker-filled' : ''}}"
+                                    (click)="currentQuestionIndex = i">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="">
+                        <tr>
+                            <td *ngFor="let marker of selectedCampaign.questions, let i = index">
+                                <div class="marker-white {{i == currentQuestionIndex ? 'marker-dash' : ''}}">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-3" (click)="logoutClicked()">
+                    <img class="logout" src="../../assets/images/logout.png">
+                </div>
+            </div>
         </div>
+
 
         <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0">
 
-            <div class="text-center m-2">
+            <div class="text-center m-2 mt-4">
                 <h5>{{selectedCampaign.questions[currentQuestionIndex].question}}</h5>
             </div>
         </div>
@@ -30,29 +49,37 @@
         <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0 container-row">
             <div class="row">
 
-                <div *ngFor="let answer of selectedCampaign.questions[currentQuestionIndex].answers" class="row option-button align-items-center">
-                    <div class="col-auto color" style="padding: 15px;">
-                        A
+                <!-- <div *ngFor="let answer of selectedCampaign.questions[currentQuestionIndex].answers, let i = index" class="row option-button align-items-center {{selectedCampaign.questions[currentQuestionIndex].selected_answer_id ? answer.correct == true ? 'correct' : selectedCampaign.questions[currentQuestionIndex].selected_answer_id == answer.answer_id ? 'wrong' : '' : '' }}"  -->
+                    
+                <div *ngFor="let answer of selectedCampaign.questions[currentQuestionIndex].answers, let i = index" class="row option-button align-items-center {{selectedCampaign.questions[currentQuestionIndex].selected_answer_id ? selectedCampaign.questions[currentQuestionIndex].selected_answer_id == answer.answer_id ? 'correct' : '' : '' }}"
+
+                    (click)="answerSelected(answer, i)">
+                    <div *ngIf="i != loadingIndex" class="col-auto color" style="padding: 15px; width: 42px">
+                        {{getAlphabet(i+65)}}
+                    </div>
+                    <div *ngIf="i == loadingIndex" class="col-auto color" style="padding: 6px; width: 42px">
+                        <img src="../../assets/images/three-dots.svg" />
                     </div>
                     <div class="col bg-white inner-option-button">
                         <div class="row align-items-center">
                             <div class="col" style="text-align: left; margin: auto;">
                                 {{answer.answer}}
                             </div>
-                            <div class="col-auto checkmark">
-                                <img src="../../assets/images/tick.png">
+                            <!-- <div class="col-auto checkmark {{selectedCampaign.questions[currentQuestionIndex].selected_answer_id ? answer.correct == true ? 'checkmark-correct' : selectedCampaign.questions[currentQuestionIndex].selected_answer_id == answer.answer_id ? 'checkmark-wrong' : '' : '' }}">
+                            </div> -->
+                            <div class="col-auto checkmark {{selectedCampaign.questions[currentQuestionIndex].selected_answer_id ? selectedCampaign.questions[currentQuestionIndex].selected_answer_id == answer.answer_id ? 'checkmark-correct' : '' : '' }}">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row vh-align">
-                    <button class="arrow-left" *ngIf="currentQuestionIndex !=0"
-                        (click)="currentQuestionIndex = currentQuestionIndex - 1">back</button>
-                    <button class="arrow-right" *ngIf="currentQuestionIndex != selectedCampaign.questions.length - 1"
-                        (click)="currentQuestionIndex = currentQuestionIndex + 1">Next</button>
-                
+            <div class="row vh-align mb-5">
+                <button class="arrow arrow-left" [disabled]="loadingIndex > -1 || currentQuestionIndex ==0"
+                    (click)="currentQuestionIndex = currentQuestionIndex - 1">&lt;</button>
+                <button class="arrow arrow-right"
+                    [disabled]="loadingIndex > -1 || currentQuestionIndex == selectedCampaign.questions.length - 1"
+                    (click)="currentQuestionIndex = currentQuestionIndex + 1">&gt;</button>
             </div>
 
         </div>
@@ -66,4 +93,29 @@
         </div>
     </div>
 
+</div>
+
+<!-- <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-clockwise" [fullScreen] = "true"></ngx-spinner> -->
+
+
+<button id="openTimeupPopupButton" [hidden]="true" data-toggle="modal" data-target="#timeupPopup">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="timeupPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="outer">
+                    <div class="inner popup-body">Are you sure you want to logout?</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="outer">
+                    <button class="btn btn-primary shadow mx-3" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary shadow" data-dismiss="modal" (click)="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
