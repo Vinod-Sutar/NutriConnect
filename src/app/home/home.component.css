@@ -1,0 +1,30 @@
+.alert-text {
+    color: red;
+    font-size: 12px;
+}
+
+
+@media (min-device-width : 640px) {
+    
+.container {
+
+    background-image: linear-gradient(to bottom, #EFF9D4 60%, #cbecf8);
+}
+
+.fogsi-cipla {
+    padding: 10px;
+}
+
+.loginfrm  {
+    box-shadow: 0px 0px 10px 5px #00000020 !important;
+    margin-top: 0px;
+}
+
+.container-row {
+
+height: 100%;
+  background-image: url('../../assets/images/desktop-bg.png'); 
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+}

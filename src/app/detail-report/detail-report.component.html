@@ -1,0 +1,62 @@
+<div class="primary-bg-color d-flex flex-column">
+    <div class="container-fluid" *ngIf="selectedCampaign">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="padding-0">
+                        <img class="desktop" src="../../assets/images/nutri-connect-corner.png" alt="">
+                        <img class="mobile" src="../../assets/images/fogsi-cipla.png" alt="">
+                        <img class="mobile" src="../../assets/images/nutri-connect.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 my-4">
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="text-left link" [routerLink]="['/reports']">&lt; Sections</div>
+                    </div>
+                    <div class="col-6">
+                        <!-- <div class="text-right link">Download Report</div> -->
+                    </div>
+                </div>
+                
+                <h4 class="text-center" style="color: #1F4e94">{{selectedCampaign.campaign_name}}</h4>
+
+                <div *ngFor="let question of selectedCampaign.questions; let i = index" class="campaign-border">
+                    <div class="row">
+                        <div class="col-md-8">  
+                            <h5>{{i+1}}. {{question.question}}</h5>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="ml-4 text-right">Total Participants: {{question.count}}</h6>
+                        </div>
+                    </div>
+                    <hr>
+                    <div *ngFor="let answer of question.answers; let j = index">
+                        <div class="row">
+                            <div class="col-7">
+                                <h6>{{getAlphabet(j+65)}}. {{answer.answer}}</h6>
+                            </div>
+                            <div class="col-5">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div>{{(answer.count/question.count*100).toFixed(2)}}%</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="text-right">{{answer.count}}/{{question.count}}</div>
+                                    </div>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" [ngStyle]="{'width': answer.count/question.count*100 + '%', 'background-color': '#1F4e94' }" aria-valuenow="25"
+                                        aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

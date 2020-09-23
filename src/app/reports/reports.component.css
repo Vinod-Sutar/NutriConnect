@@ -1,0 +1,45 @@
+
+.primary-bg-color {
+    background-image: linear-gradient(to bottom, #EFF9D4 60%, #cbecf8);
+    min-height: 100%;
+}
+
+.title {
+    color: white;
+    font-size: 16px;
+}
+
+p {
+    font-size: 13px;
+}
+
+
+.logout {
+    margin-top: 25px !important;
+     width: 40px;
+ }
+
+
+.container-row {
+
+    height: 100%;
+}
+
+.section-item {
+
+    padding-top: 5px;
+}
+
+
+.section-item > div:last-child {
+    
+   border-radius: 5px 25px 5px 5px;
+ }
+
+ .link {
+     cursor: pointer;
+ }
+ 
+ .link:hover {
+    text-decoration: underline;
+  }

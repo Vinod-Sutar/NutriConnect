@@ -1,0 +1,30 @@
+
+.primary-bg-color {
+    background-image: linear-gradient(to bottom, #EFF9D4 60%, #cbecf8);
+}
+
+.campaign-border {
+
+    margin: 25px 0;
+    border-radius: 10px;
+    border: 1px solid gray;
+    padding: 10px 20px;
+}
+
+.campaign-header {
+
+    padding: 10px 20px;
+    border-radius: 9px 9px 0px 0px;
+    color: white;
+    width: 100%;
+}
+
+
+
+.link {
+    cursor: pointer;
+}
+
+.link:hover {
+   text-decoration: underline;
+ }

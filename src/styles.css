@@ -304,3 +304,25 @@ margin-left: 8%;
     width: 40px;
     float: right;
 }
+
+
+
+.desktop {
+   display: none !important;
+}
+
+.mobile {
+   display: block !important;
+   background-color: #cbecf8;
+}
+
+@media (min-device-width : 640px) {
+   /* Styles */
+   .desktop {
+       display: block !important;
+   }
+   
+   .mobile {
+       display: none !important;
+   }  
+}

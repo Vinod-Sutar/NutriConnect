@@ -3,3 +3,17 @@
     text-align:center;
  }
  
+ .thankyou {
+     width:50%;
+     margin-left: 10%;
+ }
+
+ .header {
+
+    width:50%;
+ }
+ .sponsor {
+
+    border-radius: 20px;
+    width:80%;
+ }

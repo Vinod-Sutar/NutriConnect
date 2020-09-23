@@ -1,6 +1,116 @@
-<div class="container h-100 d-flex flex-column">
+<div class="container h-100 d-flex flex-column desktop">
 
-    <div class="row mt-3">
+    <div class="row container-row">
+
+
+        <div class="col-md-6 padding-0 mb-4">
+            <div class="row">
+                <div class="padding-0">
+                    <img src="../../assets/images/nutri-connect-corner.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="row mt-3">
+
+                <div class="col-3">
+                    <img class="home-button" src="../../assets/images/home.svg" (click)="homeClicked()">
+                </div>
+
+                <div class="col padding-0">
+                    <table class="mt-3">
+                        <tr>
+                            <td *ngFor="let marker of selectedCampaign.questions, let i = index">
+                                <div class="marker {{marker.selected_answer_id > 0 ? 'marker-filled' : ''}}"
+                                    (click)="stripClicked(i)">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="">
+                        <tr>
+                            <td *ngFor="let marker of selectedCampaign.questions, let i = index">
+                                <div class="marker-white {{i == currentQuestionIndex ? 'marker-dash' : ''}}">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="col-3"  (click)="logoutClicked()">
+                    <img class="logout" src="../../assets/images/logout.png">
+                </div>
+            </div>
+
+
+            <div class="padding-0">
+                <div class="text-center m-2 m-5">
+                    <h5>{{selectedCampaign.questions[currentQuestionIndex].question}}</h5>
+                </div>
+            </div>
+
+            <div class="padding-0">
+                <div class="row">
+    
+                    <!-- <div *ngFor="let answer of selectedCampaign.questions[currentQuestionIndex].answers, let i = index" class="row option-button align-items-center {{selectedCampaign.questions[currentQuestionIndex].selected_answer_id ? answer.correct == true ? 'correct' : selectedCampaign.questions[currentQuestionIndex].selected_answer_id == answer.answer_id ? 'wrong' : '' : '' }}"  -->
+                    <div class="col-md-6" *ngFor="let answer of selectedCampaign.questions[currentQuestionIndex].answers, let i = index">
+                        <div class="row option-button align-items-center {{selectedCampaign.questions[currentQuestionIndex].selected_answer_id ? selectedCampaign.questions[currentQuestionIndex].selected_answer_id == answer.answer_id ? 'correct' : '' : '' }}"
+                        (click)="answerSelected(answer, i)">
+                        <div *ngIf="i != loadingIndex" class="col-auto color" style="padding: 15px; width: 42px">
+                            {{getAlphabet(i+65)}}
+                        </div>
+                        <div *ngIf="i == loadingIndex" class="col-auto color" style="padding: 6px; width: 42px">
+                            <img src="../../assets/images/three-dots.svg" />
+                        </div>
+                        <div class="col bg-white inner-option-button">
+                            <div class="row align-items-center">
+                                <div class="col" style="text-align: left; margin: auto;">
+                                    {{answer.answer}}
+                                </div>
+                                <!-- <div class="col-auto checkmark {{selectedCampaign.questions[currentQuestionIndex].selected_answer_id ? answer.correct == true ? 'checkmark-correct' : selectedCampaign.questions[currentQuestionIndex].selected_answer_id == answer.answer_id ? 'checkmark-wrong' : '' : '' }}">
+                                </div> -->
+                                <div
+                                    class="col-auto checkmark {{selectedCampaign.questions[currentQuestionIndex].selected_answer_id ? selectedCampaign.questions[currentQuestionIndex].selected_answer_id == answer.answer_id ? 'checkmark-correct' : '' : '' }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    
+                </div>
+    
+                <div class="row vh-align mb-5">
+    
+                    <!-- Previous Button -->
+                    <button class="arrow arrow-left" [disabled]="loadingIndex > -1 || currentQuestionIndex ==0"
+                        (click)="previousButtonClicked(currentQuestionIndex)">&lt;</button>
+    
+    
+                    <!-- Next Button -->
+                    <button class="arrow arrow-right" [disabled]="loadingIndex > -1"
+                        (click)="nextButtonClicked()">&gt;</button>
+                </div>
+    
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <div class="row margin-0 padding-0">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 margin-0 padding-0" style="background-color: #cbecf8;">
+            <img class="bottom-bar" src="../../assets/images/bottom-bar.png" alt="">
+        </div>
+    </div>
+
+</div>
+
+<div class="container h-100 d-flex flex-column mobile">
+
+    <div class="row mt-3 bg-white">
 
         <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 ">
             <div class="row">
@@ -26,7 +136,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="col-3" (click)="logoutClicked()">
+                <div class="col-3"  (click)="logoutClicked()">
                     <img class="logout" src="../../assets/images/logout.png">
                 </div>
             </div>
@@ -50,9 +160,9 @@
             <div class="row">
 
                 <!-- <div *ngFor="let answer of selectedCampaign.questions[currentQuestionIndex].answers, let i = index" class="row option-button align-items-center {{selectedCampaign.questions[currentQuestionIndex].selected_answer_id ? answer.correct == true ? 'correct' : selectedCampaign.questions[currentQuestionIndex].selected_answer_id == answer.answer_id ? 'wrong' : '' : '' }}"  -->
-                    
-                <div *ngFor="let answer of selectedCampaign.questions[currentQuestionIndex].answers, let i = index" class="row option-button align-items-center {{selectedCampaign.questions[currentQuestionIndex].selected_answer_id ? selectedCampaign.questions[currentQuestionIndex].selected_answer_id == answer.answer_id ? 'correct' : '' : '' }}"
 
+                <div *ngFor="let answer of selectedCampaign.questions[currentQuestionIndex].answers, let i = index"
+                    class="row option-button align-items-center {{selectedCampaign.questions[currentQuestionIndex].selected_answer_id ? selectedCampaign.questions[currentQuestionIndex].selected_answer_id == answer.answer_id ? 'correct' : '' : '' }}"
                     (click)="answerSelected(answer, i)">
                     <div *ngIf="i != loadingIndex" class="col-auto color" style="padding: 15px; width: 42px">
                         {{getAlphabet(i+65)}}
@@ -67,7 +177,8 @@
                             </div>
                             <!-- <div class="col-auto checkmark {{selectedCampaign.questions[currentQuestionIndex].selected_answer_id ? answer.correct == true ? 'checkmark-correct' : selectedCampaign.questions[currentQuestionIndex].selected_answer_id == answer.answer_id ? 'checkmark-wrong' : '' : '' }}">
                             </div> -->
-                            <div class="col-auto checkmark {{selectedCampaign.questions[currentQuestionIndex].selected_answer_id ? selectedCampaign.questions[currentQuestionIndex].selected_answer_id == answer.answer_id ? 'checkmark-correct' : '' : '' }}">
+                            <div
+                                class="col-auto checkmark {{selectedCampaign.questions[currentQuestionIndex].selected_answer_id ? selectedCampaign.questions[currentQuestionIndex].selected_answer_id == answer.answer_id ? 'checkmark-correct' : '' : '' }}">
                             </div>
                         </div>
                     </div>
@@ -75,11 +186,15 @@
             </div>
 
             <div class="row vh-align mb-5">
+
+                <!-- Previous Button -->
                 <button class="arrow arrow-left" [disabled]="loadingIndex > -1 || currentQuestionIndex ==0"
-                    (click)="currentQuestionIndex = currentQuestionIndex - 1">&lt;</button>
-                <button class="arrow arrow-right"
-                    [disabled]="loadingIndex > -1 || currentQuestionIndex == selectedCampaign.questions.length - 1"
-                    (click)="currentQuestionIndex = currentQuestionIndex + 1">&gt;</button>
+                    (click)="previousButtonClicked(currentQuestionIndex)">&lt;</button>
+
+
+                <!-- Next Button -->
+                <button class="arrow arrow-right" [disabled]="loadingIndex > -1"
+                    (click)="nextButtonClicked()">&gt;</button>
             </div>
 
         </div>

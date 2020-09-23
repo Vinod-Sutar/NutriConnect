@@ -110,3 +110,23 @@
      border-color: #ff7b7b;
     background-image: url('../../assets/images/wrong.png');
  }
+
+
+.container-row {
+
+    height: 100%;
+}
+
+
+@media (min-device-width : 640px) {
+
+    .marker-white{
+        border: 1px solid transparent;
+    }
+    
+    .option-button {
+        margin : 0;
+        margin-bottom: 20px;
+    }
+}
+    

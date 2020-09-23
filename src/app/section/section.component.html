@@ -1,17 +1,124 @@
-<div class="container h-100 d-flex flex-column">
+<div class="container h-100 d-flex flex-column desktop">
+
+    <div class="row container-row flex-fill">
+
+
+
+
+        <div class="col-6 padding-0 mb-4">
+            <div class="padding-0">
+                <img src="../../assets/images/nutri-connect-corner.png" alt="">
+            </div>
+        </div>
+
+        <div class="col-6 text-center pb-4">
+
+
+            <div class="row">
+                <div class="col-12"  (click)="logoutClicked()">
+                    <img class="logout" src="../../assets/images/logout.png">
+                </div>
+            </div>
+
+            <div class="py-2 primary-color text-center">
+                <h5>SECTIONS</h5>
+            </div>
+            <div class="row justify-content-between align-items-center">
+                <div *ngFor="let campaign of campaigns" class="col-4 text-center my-2"
+                    (click)="navigateToQuiz(campaign)">
+
+                    <div class="shadow section-item">
+
+                        <div class="section-item-badge checkmark checkmark-correct"
+                            [ngStyle]="{'border': '2px solid' + campaign.color, 'background-color': campaign.color}"
+                            *ngIf="getUnappearedQuestionCount(campaign) == campaign.questions.length">
+                        </div>
+
+                        <div *ngIf="getUnappearedQuestionCount(campaign) != campaign.questions.length"
+                            class="section-item-badge vh-align" [ngStyle]="{'border': '2px solid' + campaign.color}">
+                            <span
+                                [ngStyle]="{'color': campaign.color}">{{getUnappearedQuestionCount(campaign)}}/{{campaign.questions.length}}</span>
+                        </div>
+
+                        <div [style.background-color]="campaign.color">
+                            <br>
+                            <h5 class="title">{{campaign.campaign_name}}</h5>
+                            <p>{{campaign.detail}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="margin-0 padding-0">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 margin-0 padding-0" style="background-color: #cbecf8;">
+            <img class="bottom-bar " src="../../assets/images/bottom-bar.png" alt="">
+        </div>
+    </div>
+</div>
+
+
+<button id="openTimeupPopupButton" [hidden]="true" data-toggle="modal" data-target="#timeupPopup">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="timeupPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="outer">
+                    <div class="inner popup-body">You have already shared your response for this section.</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="outer">
+                    <button id="home-button" class="btn btn-primary shadow" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<button id="openLogoutPopupButton" [hidden]="true" data-toggle="modal" data-target="#logoutPopup">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="logoutPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="outer">
+                    <div class="inner popup-body">Are you sure you want to logout?</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="outer">
+                    <button class="btn btn-primary shadow mx-3" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary shadow" data-dismiss="modal" (click)="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container h-100 d-flex flex-column mobile">
+
+    <div class="row bg-white">
+        <div class="col-12"  (click)="logoutClicked()">
+            <img class="logout" src="../../assets/images/logout.png">
+        </div>
+    </div>
 
     <div class="row flex-fill">
 
-        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0 mb-4">
-            <div class="row">
-                <div class="col-2">
-                </div>
-                <div class="col-8 padding-0">
-                    <img src="../../assets/images/fogsi-cipla-small.png" alt="">
-                </div>
-                <div class="col-2"  (click)="logoutClicked()">
-                    <img class="logout mt-4" src="../../assets/images/logout.png">
-                </div>
+
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0 bg-white">
+            <div class="padding-0 mx-5 my-2">
+                <img src="../../assets/images/fogsi-cipla-small.png" alt="">
             </div>
         </div>
 
@@ -41,7 +148,7 @@
                                 [ngStyle]="{'color': campaign.color}">{{getUnappearedQuestionCount(campaign)}}/{{campaign.questions.length}}</span>
                         </div>
 
-                        <div  [style.background-color]="campaign.color">
+                        <div [style.background-color]="campaign.color">
                             <br>
                             <h5 class="title">{{campaign.campaign_name}}</h5>
                             <p>{{campaign.detail}}</p>

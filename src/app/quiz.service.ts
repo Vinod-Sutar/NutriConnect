@@ -17,4 +17,9 @@ export class QuizService {
 
     return this.http.post("https://api.ciplanutriconnect.in", data);
   }
+
+  report(data: any) {
+
+    return this.http.post("https://api.ciplanutriconnect.in", data);
+  }
 }

@@ -88,7 +88,7 @@ export class QuizComponent implements OnInit {
 
     let currentQuestion = this.selectedCampaign.questions[this.currentQuestionIndex];
 
-    if (currentQuestion.selected_answer_id == 0) {
+    if (currentQuestion.server_answered != true) {
 
       this.loadingIndex = index;
 
@@ -108,30 +108,31 @@ export class QuizComponent implements OnInit {
 
           currentQuestion.selected_answer_id = answer.answer_id;
 
-
           setTimeout(() => {
 
             localStorage.setItem('selectedCampaign', JSON.stringify(this.selectedCampaign))
 
             this.loadingIndex = -1;
             
-            if (this.currentQuestionIndex != this.selectedCampaign.questions.length - 1) {
+            // if (this.currentQuestionIndex != this.selectedCampaign.questions.length - 1) {
 
-              let nextQuestion = this.selectedCampaign.questions[this.currentQuestionIndex + 1];
+            //   let nextQuestion = this.selectedCampaign.questions[this.currentQuestionIndex + 1];
 
-              if (nextQuestion.selected_answer_id == 0) {
+            //   if (nextQuestion.selected_answer_id == 0) {
 
-                this.currentQuestionIndex = this.currentQuestionIndex + 1;
-              }
-              else {
+            //     this.currentQuestionIndex = this.currentQuestionIndex + 1;
+            //   }
+            //   else {
 
-                this.loadNextUnappearedQuestion();
-              }
-            }
-            else {
+            //     this.loadNextUnappearedQuestion();
+            //   }
+            // }
+            // else {
 
-              this.loadNextUnappearedQuestion();
-            }
+            //   this.loadNextUnappearedQuestion();
+            // }
+
+            this.nextButtonClicked();
 
           }, 2000);
         }
@@ -159,5 +160,66 @@ export class QuizComponent implements OnInit {
   homeClicked() {
 
     this.router.navigate(['/sections']);
+  }
+
+  previousButtonClicked(tempIndex) {
+
+    // debugger;
+
+    if (tempIndex > 0) {
+
+      tempIndex--;
+
+      if (tempIndex == 0) {
+
+        if (this.selectedCampaign.questions[tempIndex].server_answered !=  true) {
+
+          this.currentQuestionIndex--;
+        }
+      }
+      else if (this.selectedCampaign.questions[tempIndex].server_answered ==  true) {
+
+        this.previousButtonClicked(tempIndex);
+      }
+      else {
+
+        this.currentQuestionIndex--;
+      }
+    }
+  }
+
+  nextButtonClicked() {
+    
+    // debugger;
+
+    let tempIndex = this.currentQuestionIndex;
+
+    if (tempIndex < this.selectedCampaign.questions.length) {
+
+      tempIndex++;
+
+      if (tempIndex == this.selectedCampaign.questions.length) {
+
+        this.router.navigate(['/sponsors']);
+      }
+      else if (this.selectedCampaign.questions[tempIndex].server_answered ==  true) {
+        
+        this.currentQuestionIndex++;
+
+        this.nextButtonClicked();
+      }
+      else {
+
+        this.currentQuestionIndex++;
+      }
+    }
+  }
+
+  stripClicked(clickedIndex) {
+
+    if (this.selectedCampaign.questions[clickedIndex].server_answered !=  true) {
+      
+      this.currentQuestionIndex = clickedIndex
+    }
   }
 }

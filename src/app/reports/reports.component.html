@@ -1,0 +1,158 @@
+<div *ngIf="campaigns" class="primary-bg-color d-flex flex-column">
+
+    <div class="container desktop">
+
+        <div class="row flex-fill">
+
+
+            <div class="col-6 padding-0 mb-4">
+                <div class="padding-0">
+                    <img src="../../assets/images/nutri-connect-corner.png" alt="">
+                </div>
+            </div>
+
+            <div class="col-6 text-center pb-4 mt-4">
+
+                <div class="row" *ngIf="users">
+                    <div class="col-12">
+                        <div class="text-right link" (click)="downloadUsersExcel()">Download Login Report</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <!-- <div class="text-left link">&lt; Sections</div> -->
+                    </div>
+                    <div class="col-6">
+                        <div class="text-right link" (click)="downloadExcel()">Download Report</div>
+                    </div>
+                </div>
+
+                <div class="py-2 primary-color text-center">
+                    <h5>SECTIONS</h5>
+                </div>
+                <div class="row justify-content-between align-items-center">
+                    <div *ngFor="let campaign of campaigns" class="col-4 text-center my-2"
+                        (click)="navigateToQuiz(campaign)">
+
+                        <div class="shadow section-item">
+                            <div [style.background-color]="campaign.color">
+                                <br>
+                                <h5 class="title">{{campaign.campaign_name}}</h5>
+                                <p>{{campaign.detail}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="margin-0 padding-0">
+            <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 margin-0 padding-0"
+                style="background-color: #cbecf8;">
+                <img class="bottom-bar " src="../../assets/images/bottom-bar.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container h-100 d-flex flex-column mobile">
+
+    <div class="row flex-fill">
+
+
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0 bg-white">
+            <div class="padding-0 mx-5 my-2">
+                <img src="../../assets/images/fogsi-cipla-small.png" alt="">
+            </div>
+        </div>
+
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0 primary-color">
+            <img src="../../assets/images/nutri-connect.png" alt="">
+        </div>
+
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 py-2 primary-color text-center">
+            <h5>SECTIONS</h5>
+        </div>
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 container-row text-center pb-4">
+
+            <div class="row" *ngIf="users">
+                <div class="col-12">
+                    <div class="link" (click)="downloadUsersExcel()">Download Login Report</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="link" (click)="downloadExcel()">Download Report</div>
+                </div>
+            </div>
+
+            <div class="row justify-content-between align-items-center">
+                <div *ngFor="let campaign of campaigns" class="col-6 text-center my-2"
+                    (click)="navigateToQuiz(campaign)">
+
+                    <div class="shadow section-item">
+                        <div [style.background-color]="campaign.color">
+                            <br>
+                            <h5 class="title">{{campaign.campaign_name}}</h5>
+                            <p>{{campaign.detail}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="margin-0 padding-0">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 margin-0 padding-0" style="background-color: #cbecf8;">
+            <img class="bottom-bar " src="../../assets/images/bottom-bar.png" alt="">
+        </div>
+    </div>
+</div>
+
+
+<button id="openTimeupPopupButton" [hidden]="true" data-toggle="modal" data-target="#timeupPopup">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="timeupPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="outer">
+                    <div class="inner popup-body">You have already shared your response for this section.</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="outer">
+                    <button id="home-button" class="btn btn-primary shadow" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<button id="openLogoutPopupButton" [hidden]="true" data-toggle="modal" data-target="#logoutPopup">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="logoutPopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="outer">
+                    <div class="inner popup-body">Are you sure you want to logout?</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="outer">
+                    <button class="btn btn-primary shadow mx-3" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary shadow" data-dismiss="modal" (click)="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
