@@ -1,11 +1,21 @@
-<div class="container-fluid linear-gradient">
+<div class="container-fluid">
     <div class="d-flex justify-content-end">
         <img src="../../assets/images/cipla.png" alt="" class="cipla-logo">
     </div>
 
     <div class="row">
 
-        <div class="col-md-6 offset-md-3" style="overflow-x:auto;">
+        <div class="col-md-6 offset-md-3">
+            <div class="d-flex justify-content-center">
+                <img src="../../assets/images/nutrition_beyond.png" alt="" class="nutrition_beyond">
+            </div>
+        </div>
+        <div class="col-md-6 offset-md-3">
+            <h5 class="text-center mx-3 mt-2 text-dark">A Guiding Light for patients during Pregnancy &amp; Lactation
+            </h5>
+        </div>
+
+        <div class="col-md-6 offset-md-3 linear-gradient" style="overflow-x:auto;">
 
             <div class="d-flex justify-content-center my-4">
                 <h5>Report</h5>
@@ -13,7 +23,7 @@
 
             <div *ngFor="let mediaObj of report; let i = index">
 
-                <h5>{{mediaObj["mediaId"]}}</h5>
+                <h5>{{getMediaName(mediaObj)}}</h5>
 
                 <table class="mb-4">
                     <tr>
@@ -29,6 +39,9 @@
                         <th>
                             <p class="thank-you strict-col strict-col-city">Type</p>
                         </th>
+                        <th>
+                            <p class="thank-you strict-col strict-col-city">Date</p>
+                        </th>
                     </tr>
                     <tr *ngFor="let user of mediaObj['users']; let i = index">
                         <td style="width: 30px;">
@@ -37,11 +50,14 @@
                         <td>
                             <p class="thank-you">{{user['name']}}</p>
                         </td>
-                        <td style="width: 100px;">
+                        <td style="width: 90px;">
                             <p class="thank-you strict-col strict-col-city">{{user['state']}}</p>
                         </td>
-                        <td style="width: 80px;">
+                        <td style="width: 50px;">
                             <p class="thank-you strict-col strict-col-city">{{user['userType']}}</p>
+                        </td>
+                        <td style="width: 70px;">
+                            <p class="thank-you strict-col strict-col-updated">{{user['updated_on']}}</p>
                         </td>
                     </tr>
                 </table>

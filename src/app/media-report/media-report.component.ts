@@ -23,6 +23,12 @@ export class MediaReportComponent implements OnInit {
     this.loadReport();
   }
 
+  getMediaName(media) {
+
+    var mediaName = this.mediaService.getMediaNameById(media.mediaId);
+  
+    return mediaName;
+  }
 
   loadReport(): void {
 
