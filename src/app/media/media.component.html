@@ -1,0 +1,157 @@
+<div class="container h-100 d-flex flex-column" [style.min-height.px]="screenHeight">
+
+    <div id="main-media" class="row flex-grow-1">
+
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 padding-0 primary-color">
+
+
+            <div class="d-flex justify-content-end mt-2">
+                <img src="../../assets/images/cipla.png" alt="" class="cipla-logo">
+            </div>
+            <div class="px-4">
+                <img src="../../assets/images/nutrition_beyond.png" alt="" class="nutrition_beyond">
+            </div>
+
+            <h5 class="text-center mx-3 mt-2 text-dark">A Guiding Light for patients during Pregnancy &amp; Lactation
+            </h5>
+            <br><br>
+        </div>
+
+
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 text-center pb-5 container-row">
+
+            <div *ngIf="selectedMedia==null">
+                <h5>Invalid media link</h5>
+            </div>
+            <div *ngIf="serverResponse">
+                <h5 class="text-danger">Error. {{serverResponse}}</h5>
+            </div>
+            <div *ngIf="selectedMedia.password!=password &&  logged==true" class="loginfrm shadow">
+
+                <form [formGroup]="mediaForm">
+                    <br>
+                    <div class="d-flex justify-content-between">
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" id="flexRadioDefault1" name="userType"
+                                    value='doctor' formControlName="userType">
+                                I AM A DOCTOR
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="radio" id="flexRadioDefault2" name="userType"
+                                    value='patient' formControlName="userType">
+                                I AM A PATIENT
+                            </label>
+                        </div>
+                    </div>
+                    <p *ngIf="showUserTypeError" class="alert-text">{{showUserTypeError}}</p>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" class="form-control inputCss" placeholder="Enter Your Full Name*"
+                            [(ngModel)]="nameField" formControlName="userName">
+                        <p *ngIf="showUserNameError" class="alert-text">{{showUserNameError}}</p>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control inputCss" formControlName="state">
+                            <option value="0" disabled>State*</option>
+                            <option>Andaman and Nicobar Island</option>
+                            <option>Andhra Pradesh</option>
+                            <option>Arunachal Pradesh</option>
+                            <option>Assam</option>
+                            <option>Bihar</option>
+                            <option>Chandigarh</option>
+                            <option>Chhattisgarh</option>
+                            <option>Dadra and Nagar Haveli and Daman and Diu</option>
+                            <option>Delhi</option>
+                            <option>Goa</option>
+                            <option>Gujarat</option>
+                            <option>Haryana</option>
+                            <option>Himachal Pradesh</option>
+                            <option>Jammu and Kashmir</option>
+                            <option>Jharkhand</option>
+                            <option>Karnataka</option>
+                            <option>Kerala</option>
+                            <option>Ladakh</option>
+                            <option>Lakshadweep</option>
+                            <option>Madhya Pradesh</option>
+                            <option>Maharashtra</option>
+                            <option>Manipur</option>
+                            <option>Meghalaya</option>
+                            <option>Mizoram</option>
+                            <option>Nagaland</option>
+                            <option>Odisha</option>
+                            <option>Puducherry</option>
+                            <option>Punjab</option>
+                            <option>Rajasthan</option>
+                            <option>Sikkim</option>
+                            <option>Tamil Nadu</option>
+                            <option>Telangana</option>
+                            <option>Tripura</option>
+                            <option>Uttar Pradesh</option>
+                            <option>Uttarakhand</option>
+                            <option>West Bengal</option>
+                        </select>
+                        <p *ngIf="showStateError" class="alert-text">{{showStateError}}</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control inputCss" placeholder="Password*"
+                            [(ngModel)]="passwordField" formControlName="password">
+                        <p *ngIf="showInvalidPasswordError" class="alert-text">{{showInvalidPasswordError}}</p>
+                    </div>
+                    <div class="form-group">
+                        <button class="nextBtn" (click)="submitClicked(passwordField)">View Video</button>
+                    </div>
+
+                </form>
+            </div>
+            <div *ngIf="selectedMedia.password==password">
+
+                <h5>{{selectedMedia.name}}</h5>
+                <br>
+                <video style="width: 100%;" controls autoplay>
+                    <source [src]="selectedMedia.video_path" type="video/mp4">
+                    Your browser does not support HTML video.
+                </video>
+
+            </div>
+
+            <hr/>
+            <p class="disclaimer">
+                <b>Disclaimer:</b> This content is for general awareness only. The information mentioned herein is not
+                intended nor implied to be a substitute for professional medical advice, diagnosis, or treatment. Please
+                consult your doctor/ healthcare professional before starting any treatment/medicine. Cipla makes every
+                effort to provide information that is accurate and timely but makes no guarantee in this regard. You
+                should consult with, and rely only on the advice of, your doctor or health care professional. Cipla
+                Limited makes no representations as to the accuracy, completeness, correctness, suitability, or validity
+                of any information mentioned herein and is NOT intended for any product promotion, NOR advertisement of
+                any health care professionals or doctors. Cipla shall not be responsible for any direct, indirect,
+                consequential, or other damages arising therefrom. No part of this may be reproduced, transmitted, or
+                stored in any form or by any means either mechanically or electronically without prior intimation to
+                Cipla.
+            </p>
+<hr/>
+            <div class="d-flex justify-content-between align-items-center" style="height: 100px">
+
+                <p class="disclaimer">
+                    Issued in public interest by Cipla<br>
+                    <b>Cipla Ltd. Regd. Office:</b> Cipla House, Peninsula Business Park, Ganpatrao Kadam Marg,<br>
+                    Lower Parel, Mumbai-400 013, India<br>
+                    Website: www.cipla.com
+                </p>
+                <img class="cipla-women-health-logo" src="../../assets/images/CiplaWomenHealthLogo.svg">
+            </div>
+        </div>
+    </div>
+
+    <p class="print-info">Designed & developed- May 2021 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Digitally - For Covid 19 period &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; For the use of a Registered Medical Practitioner or Hospital only</p>
+
+    <div class="margin-0 padding-0">
+        <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 margin-0 padding-0" style="background-color: #cbecf8;">
+            <img class="bottom-bar" src="../../assets/images/bottom-bar.png" alt="">
+        </div>
+    </div>
+
+</div>

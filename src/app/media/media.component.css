@@ -1,0 +1,50 @@
+.container {
+
+    background-image: linear-gradient(to bottom, #EFF9D4 60%, #cbecf8);
+}
+.alert-text {
+    color: red;
+    font-size: 12px;
+}
+
+.cipla-logo {
+    width: 91px;
+    height: 37px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.loginfrm  {
+    margin-top: 0px;
+}
+
+.nutrition_beyond {
+    margin-top: -15px;
+}
+
+.cipla-women-health-logo {
+    width: 100px;
+    margin-left: 8px;
+}
+
+.disclaimer {
+
+    text-align:left;
+}
+
+.print-info {
+
+    font-size: 7px;
+
+   color: #000;
+
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    margin: 0;
+
+    writing-mode: tb-rl;
+    transform: rotate(-180deg);
+}

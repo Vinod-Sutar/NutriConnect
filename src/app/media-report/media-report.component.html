@@ -1,0 +1,53 @@
+<div class="container-fluid linear-gradient">
+    <div class="d-flex justify-content-end">
+        <img src="../../assets/images/cipla.png" alt="" class="cipla-logo">
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6 offset-md-3" style="overflow-x:auto;">
+
+            <div class="d-flex justify-content-center my-4">
+                <h5>Report</h5>
+            </div>
+
+            <div *ngFor="let mediaObj of report; let i = index">
+
+                <h5>{{mediaObj["mediaId"]}}</h5>
+
+                <table class="mb-4">
+                    <tr>
+                        <th>
+                            <p class="thank-you">#</p>
+                        </th>
+                        <th>
+                            <p class="thank-you">Name</p>
+                        </th>
+                        <th>
+                            <p class="thank-you strict-col strict-col-city">City</p>
+                        </th>
+                        <th>
+                            <p class="thank-you strict-col strict-col-city">Type</p>
+                        </th>
+                    </tr>
+                    <tr *ngFor="let user of mediaObj['users']; let i = index">
+                        <td style="width: 30px;">
+                            <p class="thank-you">{{i<9?'0':''}}{{i+1}}.</p>
+                        </td>
+                        <td>
+                            <p class="thank-you">{{user['name']}}</p>
+                        </td>
+                        <td style="width: 100px;">
+                            <p class="thank-you strict-col strict-col-city">{{user['state']}}</p>
+                        </td>
+                        <td style="width: 80px;">
+                            <p class="thank-you strict-col strict-col-city">{{user['userType']}}</p>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</div>
