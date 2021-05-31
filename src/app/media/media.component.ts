@@ -38,26 +38,30 @@ export class MediaComponent implements OnInit {
 
   mediaForm: FormGroup;
   
-  medias = [
-    {
-      mediaId: "nutritionduringpregnancy",
-      name: "Nutrition During Pregnancy",
-      password: "cpink@folinine",
-      video_path: "https://api.ciplanutriconnect.in/patientedu/nutritionduringpregnancy.mp4"
-    },
-    {
-      mediaId: "selfcareduringpregnancy",
-      name: "Self Care During Pregnancy",
-      password: "cpink@folinine",
-      video_path: "https://api.ciplanutriconnect.in/patientedu/selfcareduringpregnancy.mp4"
-    }
-  ]
+  medias: any;
+
+  // medias = [
+  //   {
+  //     mediaId: "nutritionduringpregnancy",
+  //     name: "Nutrition During Pregnancy",
+  //     password: "cpink@folinine",
+  //     video_path: "https://api.ciplanutriconnect.in/patientedu/nutritionduringpregnancy.mp4"
+  //   },
+  //   {
+  //     mediaId: "selfcareduringpregnancy",
+  //     name: "Self Care During Pregnancy",
+  //     password: "cpink@folinine",
+  //     video_path: "https://api.ciplanutriconnect.in/patientedu/selfcareduringpregnancy.mp4"
+  //   }
+  // ]
 
   constructor(
     private mediaService: MediaService, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
+
+    this.medias = this.mediaService.getMedias();
 
     this.mediaForm = this.formBuilder.group({
       userType: ['', Validators.required],

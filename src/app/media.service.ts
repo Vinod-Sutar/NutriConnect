@@ -15,9 +15,9 @@ export class MediaService {
     return this.http.post("https://api.ciplanutriconnect.in", data);
   }
 
-  getMediaNameById(mediaId: string) : string {
+  getMedias() {
 
-    var medias = [
+    return [
       {
         mediaId: "nutritionduringpregnancy",
         name: "Nutrition During Pregnancy",
@@ -28,13 +28,22 @@ export class MediaService {
         mediaId: "selfcareduringpregnancy",
         name: "Self Care During Pregnancy",
         password: "cpink@folinine",
-        video_path: "https://api.ciplanutriconnect.in/patientedu/selfcareduringpregnancy.mp4"
+        video_path: "https://api.ciplanutriconnect.in/patientedu/self_care_during_pregnancy.mp4"
+      },
+      {
+        mediaId: "symptomsduringpregnancy",
+        name: "Signs & Symptoms During Pregnancy",
+        password: "cpink@folinine",
+        video_path: "https://api.ciplanutriconnect.in/patientedu/signs_and_symptoms_during_pregnancy.mp4"
       }
     ];
+  }
+
+  getMediaNameById(mediaId: string) : string {
 
     var mediaName = '';
 
-    medias.forEach(media => {
+    this.getMedias().forEach(media => {
       if (media.mediaId == mediaId) {
         mediaName = media.name;
       }
